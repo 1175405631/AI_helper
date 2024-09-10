@@ -41,8 +41,7 @@ class Chain:
             ### INSTRUCTION:
             You are the AI Resume Helper. Your job is to assist a student in preparing for this job position by identifying the **important skills** 
             and **programming languages/frameworks** required. Highlight these skills in bold for emphasis.
-            Additionally, recommend how the student should prepare for this job, focusing on the most relevant technologies.
-            Include the most relevant projects from the following portfolio links to showcase the student's experience and skills: {link_list}. 
+            Additionally, recommend how the student should prepare for this job, focusing on the most relevant technologies. 
             Ensure the email is encouraging and provides guidance for success in applying for this position.
             Do not provide a preamble.
 
@@ -51,7 +50,7 @@ class Chain:
             """
         )
         chain_email = prompt_email | self.llm
-        res = chain_email.invoke({"job_description": str(job), "link_list": links})
+        res = chain_email.invoke({"job_description": str(job)})
         return res.content
 
 if __name__ == "__main__":
