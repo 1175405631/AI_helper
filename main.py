@@ -6,7 +6,7 @@ from portfolio import Portfolio
 from utils import clean_text
 
 
-def create_streamlit_app(llm, portfolio, clean_text):
+def create_streamlit_app(llm,  clean_text):
     st.title("📧 AI Helper For Reading Job Description ")
     url_input = st.text_input("Enter a URL:", value="https://jobs.nike.com/job/R-33460")
     submit_button = st.button("Submit")
@@ -20,7 +20,7 @@ def create_streamlit_app(llm, portfolio, clean_text):
             for job in jobs:
                 skills = job.get('skills', [])
                 #links = portfolio.query_links(skills)
-                email = llm.write_mail(job, links)
+                email = llm.write_mail(job)
                 st.code(email, language='markdown')
         except Exception as e:
             st.error(f"An Error Occurred: {e}")
